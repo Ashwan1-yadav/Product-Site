@@ -4,6 +4,7 @@ const port = 3000;
 const { databaseConnect } = require("./services/DBconnect");
 const cookieParser = require("cookie-parser");
 const userRouter = require("./routes/userRouter");
+const adminRouter = require("./routes/adminRouter");
 const {
   checkForAuthenticationCookie,
 } = require("./middlewares/authentication");
@@ -17,6 +18,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("cookie"));
 app.use("/user", userRouter);
+app.use("/admin", adminRouter);
+
 
 
 app.get("/", async (req, res) => {
